@@ -1,0 +1,11 @@
+# This script calculates the volume of a sphere of a user-defined radius.
+
+import math
+
+d = input("Type the diameter of your cell in micrometers: ")
+d = float(d)
+r = d / 2
+V = 4.0 / 3 * math.pi * r ** 3
+V = round(V, 3)
+print('The volume of the cell is ', V)
+print('also henlo world will you do a boop pls?')

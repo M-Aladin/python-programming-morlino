@@ -1,0 +1,10 @@
+# This script calculates the volume of a sphere.
+
+import math
+
+d = 10
+r = d / 2
+V = 4.0 / 3 * math.pi * r ** 3
+V = round(V, 3)
+print('The volume of the cell is ', V)
+print('also henlo world will you do a boop pls?')
