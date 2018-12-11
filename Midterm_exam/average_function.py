@@ -28,15 +28,17 @@ define AVERAGE FUNCTION:
 
 def vect10_input():
     """This function prompts the user to input 10 values from the keyboard and converts them into integers, returning
-    a list containing all of them. If an invalid value is typed, it gets excluded from the list and the output will be 
-    shorter."""    # fix if there is some time left, I am sure there is a way to move back the for pointer in the except
+    a list containing all of them. If an invalid value is typed, the user is prompted to try again"""
     vect = []
-    for i in range(10):
+    i = 0
+    while i < 10:
         try:
-            num = int(input("insert the %d° number:\n" % (i+1)))
+            num = int(input("insert the %d° number:\n" % (i + 1)))
             vect.append(num)
+            i = i + 1
         except ValueError:
-            print("It seems that you typed an invalid value. It will not be included in the list.")
+            print("It seems that you typed an invalid value. Please try again")   # if the user messes up, the counter
+            # doesn't increment, allowing for a retry. In this way, we end up with a 10-dimensional vector of integers
     return vect
 
 
