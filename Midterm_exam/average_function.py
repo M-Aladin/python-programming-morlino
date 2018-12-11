@@ -10,13 +10,13 @@
 """
 pseudo-code:
 
-INPUT FUNCTION:
+define INPUT FUNCTION:
 - initialize list
 - input number from keyboard
 - append to list
 - repeat previous two steps for a total of 10 times
 
-AVERAGE FUNCTION:
+define AVERAGE FUNCTION:
 - sum all the numbers in the list
 - divide by list length (in this case, we already know it's 10)
 
