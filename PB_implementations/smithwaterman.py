@@ -68,7 +68,7 @@ def subst(a, b, mat, mismat):
     return sc
 
 
-def scoring(x, y, z):
+def findmax(x, y, z):
 
     """This function takes as input the three extension scores around a cell and returns a tuple where the
     0th item is the score of the optimal extension and the 1st item is the traceback direction of the extension"""
@@ -115,7 +115,7 @@ for i in range(1, r):
         scdiag = score_matrix[i-1][j-1] + subst(seq1[i], seq2[j], match, mismatch)
         scleft = score_matrix[i][j-1] + gap
         scup = score_matrix[i-1][j] + gap
-        maxres = scoring(scdiag, scleft, scup)
+        maxres = findmax(scdiag, scleft, scup)
         score_matrix[i][j] = maxres[0]
         traceback[i][j] = maxres[1]
 

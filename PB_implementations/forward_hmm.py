@@ -27,10 +27,13 @@ first column of the matrix => first element of each item in list of lists
 probability of begin is 1 and probability of other states is 0
 the first row (begin state) is always filled with 0, so is the last row (end state)
 second column of the matrix => second element of each item in list of lists
+Each cell contains the probability of begin-to-current-state transition times the emission probability of the
+1st character of the sequence
+
+Iteration
 for each cell of the column, compute a sum:
 each term of the sum is composed of the value of a cell in the previous column, times the transition probability
 from the state of that cell to the state of the cell we are considering, times the emission probability
-Do the same with all the i^th columns of the matrix until the last one
 
 Termination
 Last column of the matrix => last element of each item in list of lists
@@ -94,24 +97,18 @@ for i in range(1, rows-1):
 # iteration: population of whole matrix until last column
 
 for j in range(2, cols-1):  # identifies the columns to traverse (except for already populated first 2 columns)
-    print("#"*10)
-    print("col", j)
     for i in range(1, rows-1):  # traverses the columns, except for first and last cell (begin and end states)
-        print('*'*5)
-        print("row", i)
         for h in range(1, rows-1):
             # this for cycle traverses the previous column for every cell of the current column
             F[i][j] += F[h][j-1] * t[state[h]][state[i]] * e[state[i]][sequence[j]]
-            print(F[i][j], F[h][j-1], t[state[h]][state[i]], e[state[i]][sequence[j]], sequence[j])
 
 # prettymatrix(F)
-# iteration block almost ok
-#
+# iteration block ok
 
 # termination
 
-for i in range(1, rows-1):  # traversing the last column excluding first and last cell
-    F[rows-1][cols-1] += F[i][cols-2] * end[state[i]]   # the -1 are necessary because we defined matrix length using
-    # the range function
+for i in range(1, rows-1):  # traversing the second-last column excluding first and last cell
+    F[rows-1][cols-1] += F[i][cols-2] * end[state[i]]   # the '-1' are necessary because we defined matrix length using
+    # the range function, so rows-1 and cols-1 are the values of our highest indices
 
 print(F[rows-1][cols-1])
