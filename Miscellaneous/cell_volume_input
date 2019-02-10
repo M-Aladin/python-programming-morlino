@@ -1,0 +1,12 @@
+# This script calculates the volume of a sphere of a user-defined radius.
+
+import math
+
+# d = input("Type the diameter of your cell in micrometers: ") # input from keyboard
+in_file = open('input_diameter.txt')  # makes the file ready to be read, but does not actually read the file
+d = in_file.read()  # reads the prepared file
+d = float(d)
+r = d / 2
+V = 4.0 / 3 * math.pi * r ** 3
+V = round(V, 3)
+print('The volume of the cell is ', V)

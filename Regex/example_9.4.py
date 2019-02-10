@@ -8,7 +8,7 @@ for pmid in pmids:
     url = "http://www.ncbi.nlm.nih.gov/pubmed?term=%s" % pmid
     handler = urllib.urlopen(url)
     html = handler.read()
-    utf = html.decode('utf-8')
+    utf = str(html)
     title_regexp = re.compile("<h1>(.{5,400})</h1>")
     match_t = title_regexp.search(utf)
     title = match_t.group(1)

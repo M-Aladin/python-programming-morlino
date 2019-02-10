@@ -18,6 +18,11 @@ class Bottle:
         self.volume = 0.0
 
 
+def fill(bottle):
+    bottle.volume = 2.0
+    return bottle
+
+
 my_bottle = Bottle()            # my_bottle is a variable that stores an instance of the Bottle class. Think of it as
 # Plato's concept of hyperuranium: the class is the ideal representation and the instance is one particular object
 # corresponding to that idea
@@ -25,3 +30,4 @@ print(f"This is my bottle.\nIts color is {my_bottle.color}, and it contains {my_
 my_bottle.empty()
 print("Here is what my bottle looks like if I try to print it:\n{0}".format(my_bottle))
 print("Now I applied a method, my bottle is empty and it contains a volume of {0}".format(my_bottle.volume))
+my_bottle = fill(my_bottle)
