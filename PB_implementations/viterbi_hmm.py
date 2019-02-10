@@ -130,15 +130,41 @@ for j in range(2, cols-1):  # accessing columns
     for i in range(1, rows-1):  # accessing single elements in column j
         probabilities = []
         pointers = []
-        for h in range(1, rows - 1):  # accessing single elements in column j-1 to find the max prob and pointers
+        for h in range(1, rows-1):  # accessing single elements in column j-1 to find the max prob and pointers
             prob_app = V[h][j-1] * t[state[h]][state[i]] * e[state[i]][sequence[j]]
             probabilities.append(prob_app)
             pointers.append(state[h])
         V[i][j], T[i][j] = findmax(probabilities, pointers)
 
-prettymatrix(V)
-prettymatrix(T)
+# iteration block ok
 
-# termination block still to write
-# probability check not ok, the calculus goes wrong somewhere
-# pointer check ok
+# termination
+
+probabilities = []
+pointers = []
+for h in range(1, rows-1):  # accessing single elements in column j-1 to find the max prob and pointers
+    prob_app = V[h][cols-2] * end[state[h]]  # probability stored in second-last column times transition to end
+    probabilities.append(prob_app)
+    pointers.append(state[h])
+V[rows-1][cols-1], T[rows-1][cols-1] = findmax(probabilities, pointers)
+pathprob = V[rows-1][cols-1]
+prettymatrix(T)
+# termination block ok
+
+
+# traceback
+pathlist = []
+traceback_state = {"B": 0, "Y": 1, "N": 2, "E": 3}  # mapping pointers to indices
+indices = [rows-1, cols-1]  # rows-1 changes depending on the pointers, cols-1 decrements in every cycle
+while indices[1] > 0:
+    pathlist.append(state[indices[0]])  # build the path
+    point = T[indices[0]][indices[1]]   # retrieve pointer value to find next step
+    # update the indices
+    indices[0] = traceback_state[point]
+    indices[1] -= 1
+pathlist.append(point)  # append begin state as a last step, outside the cycle
+path = "".join(pathlist[::-1])
+
+# output
+print("%s\n%s" % (path, sequence))
+print(pathprob)
