@@ -10,6 +10,7 @@ for line in f:
     elif temp[0] == '2':
         l2.append(temp[1])
 
+f.close()
 print("Lengths of primary neurons:\n{0}\n\nLengths of secondary neurons:\n{1}".format(l1, l2))
 
 fl1 = []
