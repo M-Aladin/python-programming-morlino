@@ -8,3 +8,6 @@ output = open('ROT13_decoded', 'w')
 
 for line in input:
     output.write(rot13(line))
+
+input.close()
+output.close()
