@@ -78,11 +78,9 @@ e = {"Y": {"A": 0.1, "C": 0.4, "G": 0.4, "T": 0.1},
 sequence = seqdecorate("ATGCG")
 
 rows = len(state)
-cols = len(sequence) # there is no need to put a +2 because we decorated it, adjusting its length
+cols = len(sequence)  # there is no need to put a +2 because we decorated it, adjusting its length
 
 F = [[0 for col in range(cols)] for row in range(rows)]
-# row/col check OK
-
 
 # initialization
 
@@ -112,3 +110,5 @@ for i in range(1, rows-1):  # traversing the second-last column excluding first 
     # the range function, so rows-1 and cols-1 are the values of our highest indices
 
 print(F[rows-1][cols-1])
+
+# output: 7.828488000000003e-05
